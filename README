@@ -1,0 +1,28 @@
+Programme Bioseq.
+TP1 29/01/2016
+CANDA Antoine
+
+Rendu TP1 : 
+
+Le 02/02/2016
+
+Les fonctions sont toutes fonctionelles. 
+Je n'ai pas eu le temps d'adapter mon code pour eviter de recopier trop les fonctions communes entre kmers et graines. 
+
+Le script execute-tp1 comprend les exemples de l'enonce et les parties tests et analyses de donnees des parties 1 2 3.
+Je n'ai pas su faire la partie V car il me parait delicat de comparer des kmers de taille 8 et 11 ensemble... 
+
+Rendu TP2 :
+
+Le 07/02/2016
+
+Suppression du package et de la classe Kmers au profit de la classe Graines.
+Retrait de duplication de code en partant du constat suivant :
+Un kmers de taille 4 revient a utiliser la graine "####".
+Il a suffit de creer la fonction createGraine(int taille) qui renvoye la graine corresppondante. 
+On evite ainsi la duplication de code. 
+
+Creation du package sequence avec la classe Sequence qui possede les methodes permettant d'extraire la sequence d'ADN (ainsi que l'identifiant) a partir du fichier passe en parametre.
+Ajout de la classe windows avec la methode windows qui cree les fenetres. 
+
+A ce stade les fonctions sont fonctionnelles.

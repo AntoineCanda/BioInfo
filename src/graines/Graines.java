@@ -17,7 +17,13 @@ public class Graines extends Windows {
 		res = new ArrayList<String>();
 	}
 
-	
+	/**
+	 * La fonction crée une graine contigue de la taille passé en param
+	 * @param taille
+	 * 		la taille de la graine
+	 * @return
+	 * 		un String représentant la graine contigue de la taille voulue
+	 */
 	public String createGraine(int taille){
 		String graine = new String();
 		for(int i=0; i<taille;i++){
@@ -65,6 +71,8 @@ public class Graines extends Windows {
 		return resultat;
 	}
 	
+	/*
+	 * Fonction qui recree une graine de même taille que la graine en parametre sans les jokers
 	public String createGraineBis(String graine){
 		String graineBis = new String();
 		int poidsGraine = 0;
@@ -78,6 +86,7 @@ public class Graines extends Windows {
 		}
 		return graineBis;
 	}
+	*/
 	/**
 	 * La fonction initialise les deux listes de kmers des fichiers pour preparer le traitement
 	 * @param f1 fichier 1 dont on extrait la sequence 1
@@ -85,12 +94,13 @@ public class Graines extends Windows {
 	 * @param graine presentant le format des kmers
 	 */
 	public void initializeGraine(String f1, String f2, String graine) {
-		String graineBis = this.createGraineBis(graine);
+		//String graineBis = this.createGraineBis(graine);
 		if(this.ssq1.isEmpty()){
 		this.ssq1 = this.createSubSequenceGraines(f1, graine);
 		}
 		if(this.ssq2.isEmpty()){
-		this.ssq2 = this.createSubSequenceGraines(f2, graineBis);
+		//this.ssq2 = this.createSubSequenceGraines(f2, graineBis);
+		this.ssq2 = this.createSubSequenceGraines(f2, graine);
 		}
 	}	
 
@@ -118,6 +128,24 @@ public class Graines extends Windows {
 		return ratio;
 	}
 	
+	/**
+	 * la fonction cree une liste qu'elle renvoye avec les fenêtres dont le ratio de kmers moyen obtenus via 
+	 * la graine est supérieur au ratio passé pour les 2 fichiers  
+	 * @param lw 
+	 * 		 entier representant la longueur de la fenetre
+	 * @param sw 
+	 * 		 entier representant le shift de la fenetre
+	 * @param graine 
+	 * 		 format de la graines pour obtenir les kmers
+	 * @param rk 
+	 * 		 double representant le ratio minimale de kmers que la fenetre doit avoir pour être conservé
+	 * @param f1 
+	 * 		 fichier dont on extrait la premiere sequence
+	 * @param f2 
+	 * 		fichier dont on extrait la seconde sequence
+	 * @return ArrayList<String>
+	 * 		une liste de fenêtre 
+	 */
 	public ArrayList<String> calculateMapperWindows(int lw, int sw,String graine, double rk, String f1, String f2){
 		ArrayList<String> resWin = new ArrayList<String>();
 		ArrayList<String> winList = this.createWindows(lw, sw, f2);
@@ -217,6 +245,22 @@ public class Graines extends Windows {
 		return ratio;
 	}
 
+	/**
+	 * la fonction affiche les fenêtres dont le ratio de kmers de taille lk
+	 *  est supérieur au ratio passé pour les 2 fichiers  
+	 * @param lw 
+	 * 		 entier representant la longueur de la fenetre
+	 * @param sw 
+	 * 		 entier representant le shift de la fenetre
+	 * @param lk 
+	 * 		 entier representant la taille des kmers
+	 * @param rk 
+	 * 		 double representant le ratio minimale de kmers que la fenetre doit avoir pour être conservé
+	 * @param f1 
+	 * 		 fichier dont on extrait la premiere sequence
+	 * @param f2 
+	 * 		fichier dont on extrait la seconde sequence
+	 */
 	public void mapperWindowsKmers (int lw, int sw, int lk, double rk, String f1, String f2){
 		String graine = createGraine(lk);
 		ArrayList<String> resWin = this.calculateMapperWindows(lw, sw, graine , rk, f1, f2);
@@ -225,6 +269,22 @@ public class Graines extends Windows {
 		}
 	}
 	
+	/**
+	 * la fonction affiche les fenêtres dont le ratio de kmers moyen obtenus via 
+	 * la graine est supérieur au ratio passé pour les 2 fichiers  
+	 * @param lw 
+	 * 		 entier representant la longueur de la fenetre
+	 * @param sw 
+	 * 		 entier representant le shift de la fenetre
+	 * @param graine 
+	 * 		 format de la graines pour obtenir les kmers
+	 * @param rk 
+	 * 		 double representant le ratio minimale de kmers que la fenetre doit avoir pour être conservé
+	 * @param f1 
+	 * 		 fichier dont on extrait la premiere sequence
+	 * @param f2 
+	 * 		fichier dont on extrait la seconde sequence
+	 */
 	public void mapperWindowsSpacedKmers (int lw, int sw, String graine, double rk, String f1, String f2){
 		ArrayList<String> resWin = this.calculateMapperWindows(lw, sw, graine , rk, f1, f2);
 		for(String win: resWin){

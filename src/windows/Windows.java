@@ -19,6 +19,14 @@ public class Windows extends Sequence {
 		this.windows = new ArrayList<String>();
 	}
 
+	/**
+	 * La fonction cree une liste de fenetre qu'elle retourne 
+	 * @param l la taille d'une fenetre
+	 * @param p le pas à appliquer enter deux fenêtres
+	 * @param f le fichier sur lequel on applique la methode
+	 * @return 
+	 * 		une liste de fenetre de la taille associée
+	 */
 	public ArrayList<String> createWindows(int l, int p, String f) {
 		String sequence = this.getSequence(this.createSequences(f));
 		int i = 0;
@@ -41,6 +49,11 @@ public class Windows extends Sequence {
 		return this.windows;
 	}
 	
+	/**
+	 * La methode recupere la sequences d'ADN de la fenetre en retirant la position de la fenetre dans la sequence globale 
+	 * @param seq la fenetre de base 
+	 * @return la fenetre sans les positions
+	 */
 	public String getWindows(String seq){
 		String res = new String();
 		int indexBegin = 0;
@@ -57,12 +70,16 @@ public class Windows extends Sequence {
 		return res;
 	}
 
+	/**
+	 * Affiche les fenetre avec les positions du fichier passé en parametre de la taille souhaités 
+	 * @param l la longueur de la fenetre
+	 * @param p le pas à appliquer
+	 * @param file le fichier dont on extrait la sequence
+	 */
 	public void windows(int l, int p, String file) {
 		this.createWindows(l, p, file);
 		for (String win : this.windows) {
 			System.out.println(win);
-			//System.out.println(getWindows(win));
-			//System.out.println(getWindows(win).length());
 		}
 	}
 	

@@ -15,7 +15,8 @@ public class Mutation extends Sequence {
 	private String id;
 	private String nomFichier;
 
-	public Mutation() {
+	public Mutation(String f) {
+		super(f);
 		this.id = new String(">");
 		this.nomFichier = new String();
 	}
@@ -61,10 +62,8 @@ public class Mutation extends Sequence {
 	public String mutationSequence(String file, int numberMutation) {
 		Random rand = new Random();
 		String seq = new String();
-		String[] tab = new String[2];
-		tab = this.createSequences(file);
-		seq = this.getSequence(tab);
-		this.id = id.concat(this.getIdentifiant(tab)); // On en profite pour extraire l'identifiant pour la copier dans le nouveau fichier
+		seq = this.getSequence(0);
+		this.id = id.concat(this.getIdentifiant(0)); // On en profite pour extraire l'identifiant pour la copier dans le nouveau fichier
 		char[] sequence = seq.toCharArray();
 
 		for (int i = 0; i < numberMutation; i++) {
@@ -75,10 +74,10 @@ public class Mutation extends Sequence {
 	}
 
 	/**
-	 * Fonction qui gere la creation du fichier contenant la sequence mutée
+	 * Fonction qui gere la creation du fichier contenant la sequence mutï¿½e
 	 * @param nomFile le nom du fichier a creer
 	 * @param identifiant la chaine correspondant a la ligne de l'identifiant
-	 * @param seqMut la chaine correspondant a la sequence mutée
+	 * @param seqMut la chaine correspondant a la sequence mutï¿½e
 	 */
 	public void ecrireFichier(String nomFile, String identifiant, String seqMut) {
 
@@ -111,7 +110,7 @@ public class Mutation extends Sequence {
 	}
 
 	/**
-	 * Methode qui affiche la sequence mutée et creer le fichier contenant l'identifiant et la sequence mutée.
+	 * Methode qui affiche la sequence mutï¿½e et creer le fichier contenant l'identifiant et la sequence mutï¿½e.
 	 * @param file
 	 * @param numberMutation
 	 */

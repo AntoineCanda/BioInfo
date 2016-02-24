@@ -3,26 +3,28 @@ import sequence.Sequence;
 
 public class Fasta extends Sequence {
 
-	public Fasta() {
+	public Fasta(String f) {
+		super(f);
 	}
 	
 	/**
-	 * Methode qui affiche la sequence d'ADN du fichier f
+	 * Methode qui affiche les sequences d'ADN du fichier f
 	 * @param f le fichier dont on extrait la sequence
 	 */
 	public void printFastaSequences(String f) {
-		System.out.println(getSequence(this.createSequences(f)));
+		for(String seq: this.getListSequence()){
+			System.out.println(seq+"\n");
+		}
 	}
 	
 	/**
-	 * Methode qui affiche l'identifiant et la longueur de la sequence d'ADN
+	 * Methode qui affiche les identifiant et la longueur des sequences d'ADN  
 	 * @param f le fichier dont on extrait la sequence
 	 */
 	public void printFastaStats(String f) {
-		String[] res = this.createSequences(f);
-		String id = getIdentifiant(res);
-		String seq = getSequence(res);
-		System.out.println(id + " " + seq.length());
+		for(int i=0; i < this.getListIdentifiant().size(); i++){
+			System.out.println("L'identifiant de la sequence est " + this.getListIdentifiant().get(i)+". La sequence a une longueur de "+ this.getListSequence().get(i).length()+ " nucleotides.\n");
+		}	
 	}
-
+	
 }

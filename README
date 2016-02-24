@@ -26,3 +26,33 @@ Creation du package sequence avec la classe Sequence qui possede les methodes pe
 Ajout de la classe windows avec la methode windows qui cree les fenetres. 
 
 A ce stade les fonctions sont fonctionnelles.
+
+Rendu TP3 :
+
+Le 24/02/2016
+
+Modification importante du code notamment de Sequence.java.
+Notamment au niveau des constructeurs qui crée les listes de sequences et identifiants. 
+
+Modification de createSequence(String f) qui maintenant gére les fichiers contenant plusieurs sequences d'adn et non plus une seule.
+Modification de createSubSequence qui maintenant cree une liste de liste de kmers pour les fichiers contenant plusieurs sequences.
+Creation de la methode traitementSubSequence qui cree la liste des kmers en fonction de la graine (param) et de la sequence fournie en parametre.
+
+Ajout de taille initiale plus importante lors de la création des ArrayLists : 
+	
+	- Pour les listes contenant des listes de sequences (quand on traite plusieurs sequences par fichiers) j'ai decide de passer la taille de la liste à 50 au lieu de 10.
+	- Pour les listes contenant des kmers, je vais passer de la taille initiale (10) à 50 000 ce qui corresppond à une capacité supérieur à ce qui est nécessaire pour phagelambda. Cela permet de gagner en rapidité 
+	en évitant la réallocation systématique du tableau interne si il y a de nombreux kmers ajoutés.
+	- Pour la liste contenant des fenêtres j'ai décidé de créer une liste avec un tableau de taille 2000 initialement.
+
+Ce sont des valeurs choisies de manière arbitraires en fonction de la taille des fichiers que l'on traite actuellement. Il n'est pas exclu que cela soit modifié plus tard.
+	
+ Modification des methodes dans la globalite pour tenir compte de la possibilite d'avoir plusieurs sequences par fichier.
+
+ A priori les methodes fonctionnent toujours et renvoyent les mêmes resultats apres modifications. 
+ 
+ Ajout des methodes best-matches et VJ-discover qui sont le sujet du TP.
+ Je ne suis globalement pas satisfait de l'implementation.
+ En effet j'ai utilisé le polymorphisme sur mes méthodes mais il y a trop de code recopié pour peu de changement.
+ J'ai du ajouté un attribut pour un troisieme fichier a traite et retouche les methodes d'initialisation, de comparaison de kmers et bestmatch pour peu de chose. 
+ 
